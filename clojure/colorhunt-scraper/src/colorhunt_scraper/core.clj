@@ -1,6 +1,14 @@
-(ns colorhunt-scraper.core)
+(ns colorhunt-scraper.core
+  (:require [clojure.string :as string]))
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(def data (string/split (slurp "resources/data.txt") #","))
+
+(def clean-data (map #(string/replace % #"'" "") data))
+
+(def colors (map (fn [s]
+                   [(str "#" (subs s 0 6))
+                    (str "#" (subs s 6 12))
+                    (str "#" (subs s 12 18))
+                    (str "#" (subs s 18 24))]) clean-data))
+
+
