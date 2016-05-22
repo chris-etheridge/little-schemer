@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chrisetheridge.littleschemer.model.ColorScheme;
 import com.example.chrisetheridge.littleschemer.utils.ColorsUtil;
 
 import java.io.File;

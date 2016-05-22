@@ -1,4 +1,4 @@
-package com.example.chrisetheridge.littleschemer;
+package com.example.chrisetheridge.littleschemer.model;
 
 /**
  * Created by chrisetheridge on 5/22/16.

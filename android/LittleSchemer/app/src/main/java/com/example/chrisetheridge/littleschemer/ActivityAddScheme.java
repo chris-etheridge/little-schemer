@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chrisetheridge.littleschemer.model.ColorScheme;
 import com.example.chrisetheridge.littleschemer.utils.ColorsUtil;
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 

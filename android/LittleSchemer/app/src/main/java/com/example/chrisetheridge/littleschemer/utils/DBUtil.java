@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.chrisetheridge.littleschemer.ColorScheme;
+import com.example.chrisetheridge.littleschemer.model.ColorScheme;
 
 import java.util.ArrayList;
 

@@ -2,24 +2,15 @@ package com.example.chrisetheridge.littleschemer.utils;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Color;
-import android.util.Log;
 
-import com.example.chrisetheridge.littleschemer.ColorScheme;
+import com.example.chrisetheridge.littleschemer.model.ColorScheme;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by chrisetheridge on 5/22/16.
