@@ -22,7 +22,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private final String FILE_PATH = "clean_data.txt";
-    private List<String[]> ALL_COLORS;
+    private List<ColorScheme> ALL_COLORSHEMES;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +48,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void cycleColors(LinearLayout btns) {
-        String[] colors = ALL_COLORS.get(randomNumberForColors());
+        ColorScheme color = ALL_COLORSHEMES.get(randomNumberForColors());
 
         for(int i = 0; i < btns.getChildCount(); i++) {
             Button b = (Button) btns.getChildAt(i);
 
-            b.setText(colors[i]);
-            b.setBackgroundColor(Color.parseColor(colors[i]));
+            b.setText(color.Colors[i]);
+            b.setBackgroundColor(Color.parseColor(color.Colors[i]));
         }
     }
 
     private void loadColors(Context ctx, String filepath) {
         try {
-            ALL_COLORS = ColorFiles.Util.loadData(filepath, ",", ctx);
+            List<String[]> colordata = ColorFiles.Util.loadData(filepath, ",", ctx);
+
+            for(String[] data : colordata) {
+                // we know the first 4 of the array is the scheme
+                String[] colors = {data[0], data[1], data[2], data[3]};
+                // we knew the username is the last one
+                String name = data[5];
+            }
 
             Toast.makeText(ctx, "Colors file loaded successfully!", Toast.LENGTH_SHORT).show();
         } catch(IOException e) {
