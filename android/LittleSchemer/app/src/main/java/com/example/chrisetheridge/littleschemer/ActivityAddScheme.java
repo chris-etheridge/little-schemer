@@ -38,7 +38,7 @@ public class ActivityAddScheme extends Activity {
                         COLOR_PICKER.getGreen(), COLOR_PICKER.getBlue());
 
                 ((Button) view).setText(color);
-                ((Button) view).setBackgroundColor(Color.parseColor(color));
+                view.setBackgroundColor(Color.parseColor(color));
 
                 COLOR_PICKER.dismiss();
             }
