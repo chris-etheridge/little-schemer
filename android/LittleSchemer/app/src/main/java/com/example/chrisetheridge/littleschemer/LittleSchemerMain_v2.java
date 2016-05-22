@@ -35,6 +35,9 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
 
         _db = new DBUtil(this);
 
+        // load up colors
+        loadColors(this);
+
         if(i.getExtras() != null) {
             if(i.getStringExtra("new_scheme_data") != null) {
                 String newscheme = i.getStringExtra("new_scheme_data");
@@ -43,6 +46,8 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
                 LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
 
                 setUiButtons(btns, s, this);
+
+                Toast.makeText(this, "Color saved successfully!", Toast.LENGTH_SHORT);
             }
         } else {
             initUi(this);
@@ -61,8 +66,6 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
         } catch (IOException e) {
 
         }
-
-        loadColors(ctx);
 
         LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
 

@@ -22,7 +22,7 @@ public class DBUtil {
     private String DB_NAME = "little_schemer_db";
     private String DB_TABLE_SCHEMES = "color_schemes";
     private String DB_TABLE_USER = "user_schemes";
-    private String CHECK_DB_EXISTS = "SELECT name FROM sqlite_master WHERE type='table' AND name='little_schemer_db'";
+    private String CHECK_TABLE_EXISTS = "SELECT name FROM sqlite_master WHERE type='table' AND name='color_schemes'";
 
     private int DB_VERSION = 1;
 
@@ -71,7 +71,7 @@ public class DBUtil {
 
     // essentially 'installs' the db
     public void runSchemerInstall(String path, Context ctx) throws IOException {
-        if(schemerDbExists()) {
+        if(!schemerDbExists()) {
             try {
                 db.execSQL(CREATE_TABLE_SCHEMES);
                 db.execSQL(CREATE_TABLE_USER);
@@ -95,8 +95,7 @@ public class DBUtil {
     }
 
     private boolean schemerDbExists() {
-
-        Cursor c = db.rawQuery(CHECK_DB_EXISTS, null);
+        Cursor c = db.rawQuery(CHECK_TABLE_EXISTS, null);
 
         return c != null;
     }

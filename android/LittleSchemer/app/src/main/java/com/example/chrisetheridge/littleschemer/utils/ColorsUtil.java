@@ -20,11 +20,31 @@ public class ColorsUtil {
 
         // main method which loads our data from a file PATH
         // also parses the data with a delimiter
-        public static ArrayList<ColorScheme> loadData(String path, String deli, Context ctx) throws IOException {
+        public static ArrayList<ColorScheme> loadSeedData(String path, String deli, Context ctx) throws IOException {
             AssetManager as = ctx.getAssets();
             ArrayList<ColorScheme> cs = new ArrayList();
 
             bufr = new BufferedReader(new InputStreamReader(as.open(path)));
+            String line = bufr.readLine();
+
+            while(line != null) {
+                // parse the lines
+                ColorScheme c = parseLine(line, deli);
+
+                cs.add(c);
+
+                line = bufr.readLine();
+            }
+
+            bufr.close();
+
+            return cs;
+        }
+
+        public static ArrayList<ColorScheme> loadData(String path, String deli, Context ctx) throws IOException {
+            ArrayList<ColorScheme> cs = new ArrayList();
+
+            bufr = new BufferedReader(new InputStreamReader(ctx.openFileInput(path)));
             String line = bufr.readLine();
 
             while(line != null) {

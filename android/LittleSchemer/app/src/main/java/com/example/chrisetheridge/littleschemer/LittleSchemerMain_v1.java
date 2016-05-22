@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -15,6 +16,7 @@ import com.example.chrisetheridge.littleschemer.model.ColorScheme;
 import com.example.chrisetheridge.littleschemer.utils.ColorsUtil;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,8 @@ public class LittleSchemerMain_v1 extends AppCompatActivity {
         setContentView(R.layout.activity_little_schemer_v1);
         Intent i = getIntent();
 
+        loadColors(this, SAVE_FILE_PATH);
+
         if(i.getExtras() != null) {
             if(i.getStringExtra("new_scheme_data") != null) {
                 String newscheme = i.getStringExtra("new_scheme_data");
@@ -41,6 +45,8 @@ public class LittleSchemerMain_v1 extends AppCompatActivity {
                 LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
 
                 setUiButtons(btns, s, this);
+
+                Toast.makeText(this, "Color saved successfully!", Toast.LENGTH_SHORT);
             }
         } else {
             initUi(this);
@@ -49,17 +55,19 @@ public class LittleSchemerMain_v1 extends AppCompatActivity {
 
     // initializes the ui
     private void initUi(Context ctx) {
-        loadColors(ctx, SEED_DATA_PATH);
-
         // check if our db exists or not
         if(!checkForColorsDb()) {
             try {
                 // setup the data if it does not exist
+                Log.d("c", "DOES NOT EXIST!");
+
                 ColorsUtil.FileUtil.setupData(SEED_DATA_PATH, SAVE_FILE_PATH, ",", this);
             } catch (IOException e) {
 
             }
         }
+
+        loadColors(ctx, SAVE_FILE_PATH);
 
         LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
 
@@ -86,7 +94,7 @@ public class LittleSchemerMain_v1 extends AppCompatActivity {
 
     private void loadColors(Context ctx, String filepath) {
         try {
-            ALL_COLOR_SCHEMES = ColorsUtil.FileUtil.loadData(SEED_DATA_PATH, ",", this);
+            ALL_COLOR_SCHEMES = ColorsUtil.FileUtil.loadData(filepath, ",", this);
 
             Toast.makeText(ctx, "Colors file loaded successfully!", Toast.LENGTH_SHORT).show();
         } catch(IOException e) {
@@ -101,9 +109,17 @@ public class LittleSchemerMain_v1 extends AppCompatActivity {
     }
 
     private boolean checkForColorsDb() {
-        File f = new File("schemes.txt");
+        boolean exists;
 
-        return f.exists();
+        try {
+            FileInputStream f = openFileInput("schemes.txt");
+
+            exists = true;
+        } catch (IOException e) {
+            exists = false;
+        }
+
+        return exists;
     }
 
     private void setUiButtons(LinearLayout btns, ColorScheme color, Context ctx) {
