@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 
 public class ActivityAddScheme extends Activity {
 
     private ColorPicker COLOR_PICKER;
+    private final String SAVE_FILE_PATH = "schemes.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,16 +59,34 @@ public class ActivityAddScheme extends Activity {
         Button b4 = (Button) findViewById(R.id.color_btn_4);
         TextView nametc = (TextView) findViewById(R.id.color_user_name);
 
-        String[] colors = {b1.getText().toString(), b2.getText().toString(),
-                b3.getText().toString(), b4.getText().toString()};
-        String name = nametc.getText().toString();
+        //TODO:
+        // better error showing than just a toast
+        if(validateNameEntry(nametc.getText().toString())) {
+            Toast.makeText(this, "Name cannot be empty!", Toast.LENGTH_SHORT).show();
+        } else {
+            String[] colors = {b1.getText().toString(), b2.getText().toString(),
+                    b3.getText().toString(), b4.getText().toString()};
+            String name = nametc.getText().toString();
 
-        ColorScheme newscheme = new ColorScheme(colors, name, false);
+            ColorScheme newscheme = new ColorScheme(colors, name, false);
 
-        // show the new intent
-        Intent i = new Intent(this, MainActivity.class);
-        i.putExtra("new_scheme_data", newscheme.getSchemeForWriting());
+            ColorsUtil.FileUtil.saveOneSchemeToFile(newscheme, SAVE_FILE_PATH, this);
 
-        startActivity(i);
+            // show the new intent
+            Intent i = new Intent(this, MainActivity.class);
+            i.putExtra("new_scheme_data", newscheme.getSchemeForWriting());
+
+            startActivity(i);
+        }
+    }
+
+    private boolean validateNameEntry(String name) {
+        boolean isValid = true;
+
+        if(name.contains(" ") || name.isEmpty() || name.contains(",")) {
+            isValid = false;
+        }
+
+        return isValid;
     }
 }

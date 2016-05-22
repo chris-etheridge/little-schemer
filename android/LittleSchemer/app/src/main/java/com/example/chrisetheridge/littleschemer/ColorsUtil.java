@@ -48,6 +48,7 @@ public class ColorsUtil {
         }
 
         // saves color schemes to the file
+        // we assumed that we can drop the old schemes
         public static void saveColorSchemes(ArrayList<ColorScheme> schemes, String path, Context ctx) throws IOException {
             try {
                 FileOutputStream fout = ctx.openFileOutput(path, Context.MODE_PRIVATE);
@@ -74,6 +75,24 @@ public class ColorsUtil {
 
             // save our schemes to the file
             saveColorSchemes(cs, outpath, ctx);
+        }
+
+        // write just one scheme to the file
+        // this appends to the file
+        public static void saveOneSchemeToFile(ColorScheme cs, String path, Context ctx) {
+            try {
+                FileOutputStream fout = ctx.openFileOutput(path, Context.MODE_APPEND);
+                PrintWriter wrtr = new PrintWriter(fout, true);
+                String line = cs.getSchemeForWriting();
+
+                wrtr.println(line);
+
+                wrtr.flush();
+                wrtr.close();
+
+            } catch (IOException e) {
+
+            }
         }
 
         // parses a single line from a data blob

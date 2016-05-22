@@ -27,20 +27,4 @@ public class ColorScheme {
                 + UserName + ","
                 + Liked;
     }
-
-    public String getUserName() {
-        return UserName;
-    }
-
-    public String[] getColors() {
-        return Colors;
-    }
-
-    public void setUserName(String name) {
-        UserName = name;
-    }
-
-    public void setColors(String[] colors) {
-        Colors = colors;
-    }
 }
