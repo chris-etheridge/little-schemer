@@ -1,4 +1,4 @@
-package com.example.chrisetheridge.littleschemer;
+package com.example.chrisetheridge.littleschemer.utils;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
 import android.util.Log;
+
+import com.example.chrisetheridge.littleschemer.ColorScheme;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

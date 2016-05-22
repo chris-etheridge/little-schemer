@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.chrisetheridge.littleschemer.utils.ColorsUtil;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;

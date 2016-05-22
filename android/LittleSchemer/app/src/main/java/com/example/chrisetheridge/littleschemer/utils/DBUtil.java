@@ -1,4 +1,4 @@
-package com.example.chrisetheridge.littleschemer;
+package com.example.chrisetheridge.littleschemer.utils;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,14 +6,12 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Color;
 import android.util.Log;
+
+import com.example.chrisetheridge.littleschemer.ColorScheme;
 
 import java.util.ArrayList;
 
-/**
- * Created by chrisetheridge on 5/22/16.
- */
 // our db 'adapter'
 public class DBUtil {
     private String KEY_ROWID = "_id";
