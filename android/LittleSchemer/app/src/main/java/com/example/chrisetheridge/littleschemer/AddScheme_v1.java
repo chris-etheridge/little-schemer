@@ -63,7 +63,7 @@ public class AddScheme_v1 extends Activity {
 
         //TODO:
         // better error showing than just a toast
-        if(validateNameEntry(nametc.getText().toString())) {
+        if(!validateNameEntry(nametc.getText().toString())) {
             Toast.makeText(this, "Name cannot be empty!", Toast.LENGTH_SHORT).show();
         } else {
             String[] colors = {b1.getText().toString(), b2.getText().toString(),
