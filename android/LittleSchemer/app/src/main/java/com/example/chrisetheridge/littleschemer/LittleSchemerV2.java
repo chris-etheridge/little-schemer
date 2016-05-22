@@ -3,6 +3,7 @@ package com.example.chrisetheridge.littleschemer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+// v2 uses an sql lite db
 public class LittleSchemerV2 extends AppCompatActivity {
 
     @Override

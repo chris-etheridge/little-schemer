@@ -2,7 +2,11 @@ package com.example.chrisetheridge.littleschemer;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Color;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
