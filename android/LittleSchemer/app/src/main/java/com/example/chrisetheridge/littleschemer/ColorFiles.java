@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,21 +21,29 @@ public class ColorFiles {
 
         // main method which loads our data from a file PATH
         // also parses the data with a delimiter
-        public static List<String> loadData(String path, String deli, Context ctx) {
+        public static List<String[]> loadData(String path, String deli, Context ctx) {
             File f = new File(path);
-            List<String> cs = Arrays.asList("");
+            List<String[]> cs = new ArrayList<String[]>();
 
             try {
                 bufr = new BufferedReader(new FileReader(path));
-                String line = bufr.readLine()
+                String line = bufr.readLine();
 
                 while(line != null) {
+                    // parse the lines
+                    String[] d = parseLine(line, deli);
 
+                    if(d != null && d.length > 0) {
+                        // add our set of colors to the list
+                        cs.add(d);
+                    }
                 }
 
             }
 
-            catch (IOException e) {}
+            catch (IOException e) {
+                // do nothing (for now)
+            }
 
             return cs;
         }
