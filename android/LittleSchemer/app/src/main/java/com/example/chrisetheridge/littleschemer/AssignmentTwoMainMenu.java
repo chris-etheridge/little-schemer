@@ -20,7 +20,7 @@ public class AssignmentTwoMainMenu extends AppCompatActivity {
     }
 
     public void questionTwoOnTap(View view) {
-        Intent i = new Intent(this, LittleSchemerMain_v2.class);
+        Intent i = new Intent(this, MenuActivity_v2.class);
 
         startActivity(i);
     }

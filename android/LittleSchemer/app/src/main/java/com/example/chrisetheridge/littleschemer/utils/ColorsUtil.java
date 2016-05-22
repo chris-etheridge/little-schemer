@@ -12,9 +12,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-/**
- * Created by chrisetheridge on 5/22/16.
- */
 public class ColorsUtil {
 
     public static class FileUtil {

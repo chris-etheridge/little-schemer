@@ -112,13 +112,6 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Like"
-                android:layout_weight="1"
-                android:id="@+id/like_color_btn"/>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="New Scheme"
                 android:onClick="onNewSchemeTap"/>
 

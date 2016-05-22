@@ -104,15 +104,11 @@ public class LittleSchemerMain_v1 extends AppCompatActivity {
     private boolean checkForColorsDb() {
         File f = new File("schemes.txt");
 
-        Log.d("CHRIS", f.exists() + " ");
-
         return f.exists();
     }
 
     private void setUiButtons(LinearLayout btns, ColorScheme color, Context ctx) {
         TextView uv = (TextView) findViewById(R.id.color_scheme_user_txt);
-        Button likeb = (Button) findViewById(R.id.like_color_btn);
-        //ImageButton likeib = (ImageButton) findViewById(R.id.like_image_btn);
 
         for(int i = 0; i < btns.getChildCount(); i++) {
             Button b = (Button) btns.getChildAt(i);
@@ -120,14 +116,6 @@ public class LittleSchemerMain_v1 extends AppCompatActivity {
             b.setText(color.Colors[i]);
             b.setBackgroundColor(Color.parseColor(color.Colors[i]));
 
-            /* if the color is liked
-            if(color.Liked) {
-                likeb.setActivated(false);
-                likeib.setColorFilter(Color.RED);
-            } else {
-                likeb.setActivated(true);
-                likeib.setColorFilter(Color.BLACK);
-            }*/
         }
 
         uv.setText("user: " + color.UserName);

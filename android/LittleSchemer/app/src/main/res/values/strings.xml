@@ -2,8 +2,8 @@
     <string name="app_name">little schemer</string>
     <string name="schemer_intro_text">Tap the colors or the Next button to generate a new scheme!</string>
     <string name="schemer_how_to_intro">little schemer is a simple application for finding and storing color schemes.</string>
-    <string name="schemer_how_to_what">To use little schemer, all you need to do is start the application and start tapping! You can cycle through random schemes by tapping the scheme itself or by tapping the 'Next' button. </string>
-    <string name="schemer_how_to_add">If you'd like to add your own scheme, just hit the add button and choose your 4 colors for the scheme. Don't forget to enter your name for the scheme too!!</string>
+    <string name="schemer_how_to_what">To use little schemer, all you need to do is start the application and start tapping! You can cycle through random schemes by tapping the scheme itself or by tapping the Next button. </string>
+    <string name="schemer_how_to_add">If you would like to add your own scheme, just hit the add button and choose your 4 colors for the scheme. Do not forget to enter your name for the scheme too!</string>
     <string name="schemer_how_to_like">You can also like schemes, and view these schemes later. To do this, just tap the heart icon under the scheme you like.</string>
     <string name="schemer_how_to_enjoy">We hope you enjoyed little schemer just as much as we enjoyed making it for you!</string>
 </resources>

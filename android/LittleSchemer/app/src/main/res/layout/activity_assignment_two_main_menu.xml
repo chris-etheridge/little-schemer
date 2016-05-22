@@ -26,12 +26,14 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Question 1"/>
+            android:text="Question 1"
+            android:onClick="questionOneOnTap"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Question 2"/>
+            android:text="Question 2"
+            android:onClick="questionTwoOnTap"/>
 
     </LinearLayout>
 

@@ -10,6 +10,7 @@ import android.util.Log;
 
 import com.example.chrisetheridge.littleschemer.model.ColorScheme;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 // our db 'adapter'
@@ -21,15 +22,17 @@ public class DBUtil {
     private String DB_NAME = "little_schemer_db";
     private String DB_TABLE_SCHEMES = "color_schemes";
     private String DB_TABLE_USER = "user_schemes";
+    private String CHECK_DB_EXISTS = "SELECT name FROM sqlite_master WHERE type='table' AND name='little_schemer_db'";
+
     private int DB_VERSION = 1;
 
     final String CREATE_TABLE_SCHEMES = "create table " + DB_TABLE_SCHEMES +
-            "(_id integer primary key autoincrement, username text not null," +
+            " (_id integer primary key autoincrement, username text not null," +
             " color_1 text not null, color_2 text not null, color_3 text not null," +
-            " color_4 text not null";
+            " color_4 text not null)";
 
     final String CREATE_TABLE_USER = "create table " + DB_TABLE_USER +
-            "(_id integer primary key autoincrement, color_scheme_id integer not null)";
+            " (_id integer primary key autoincrement, color_scheme_id integer not null)";
 
     final Context context;
     private DatabaseHelper _dbhelper;
@@ -50,8 +53,8 @@ public class DBUtil {
         @Override
         public void onCreate(SQLiteDatabase db) {
             try {
-                db.execSQL(DB_TABLE_SCHEMES);
-                db.execSQL(DB_TABLE_USER);
+                db.execSQL(CREATE_TABLE_SCHEMES);
+                db.execSQL(CREATE_TABLE_USER);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -59,13 +62,43 @@ public class DBUtil {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            Log.w("CHRIS", "Upgrading database from version " + oldVersion + " to "
-                    + newVersion + ", which will destroy all old data");
             db.execSQL("drop table if exists " + DB_TABLE_SCHEMES);
             db.execSQL("drop table if exists " + DB_TABLE_USER);
 
             onCreate(db);
         }
+    }
+
+    // essentially 'installs' the db
+    public void runSchemerInstall(String path, Context ctx) throws IOException {
+        if(schemerDbExists()) {
+            try {
+                db.execSQL(CREATE_TABLE_SCHEMES);
+                db.execSQL(CREATE_TABLE_USER);
+
+                insertSeedData(path, ",", ctx);
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void insertSeedData(String path, String deli, Context ctx) throws IOException {
+        // load seed data
+        ArrayList<ColorScheme> cs = ColorsUtil.FileUtil.loadData(path, deli, ctx);
+
+        // build our inserts
+        for(ColorScheme c : cs) {
+            insertScheme(c);
+        }
+    }
+
+    private boolean schemerDbExists() {
+
+        Cursor c = db.rawQuery(CHECK_DB_EXISTS, null);
+
+        return c != null;
     }
 
     public long insertScheme(ColorScheme cs) {
@@ -77,11 +110,15 @@ public class DBUtil {
         initvals.put(KEY_COLOR + 4, cs.Colors[3]);
         initvals.put(KEY_UNAME, cs.UserName);
 
-        return db.insert(DB_TABLE_SCHEMES, null, initvals);
+        long val = db.insert(DB_TABLE_SCHEMES, null, initvals);
+
+        return val;
     }
 
     public boolean deleteScheme(long id) {
-        return db.delete(DB_TABLE_SCHEMES, KEY_ROWID + "=" + id, null) > 0;
+        boolean val = db.delete(DB_TABLE_SCHEMES, KEY_ROWID + "=" + id, null) > 0;
+
+        return val;
     }
 
     public ArrayList<ColorScheme> getAllSchemes() {
@@ -94,9 +131,9 @@ public class DBUtil {
         if(c != null) {
             while(c.moveToNext()) {
                 String color_1 = c.getString(c.getColumnIndex(KEY_COLOR + 1));
-                String color_2 = c.getString(c.getColumnIndex(KEY_COLOR + 1));
-                String color_3 = c.getString(c.getColumnIndex(KEY_COLOR + 1));
-                String color_4 = c.getString(c.getColumnIndex(KEY_COLOR + 1));
+                String color_2 = c.getString(c.getColumnIndex(KEY_COLOR + 2));
+                String color_3 = c.getString(c.getColumnIndex(KEY_COLOR + 3));
+                String color_4 = c.getString(c.getColumnIndex(KEY_COLOR + 4));
                 String name = c.getString(c.getColumnIndex(KEY_UNAME));
                 int id = Integer.parseInt(c.getString(c.getColumnIndex(KEY_ROWID)));
 
