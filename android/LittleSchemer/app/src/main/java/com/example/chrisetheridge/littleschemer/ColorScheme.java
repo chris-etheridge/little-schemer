@@ -10,7 +10,17 @@ public class ColorScheme {
     }
 
     public String UserName;
+
     public String[] Colors;
+
+    // preps the scheme for writing to file
+    public String getSchemeForWriting() {
+        return Colors[0] + ","
+                + Colors[1] + ","
+                + Colors[2] + ","
+                + Colors[3] + ","
+                + UserName;
+    }
 
     public String getUserName() {
         return UserName;
