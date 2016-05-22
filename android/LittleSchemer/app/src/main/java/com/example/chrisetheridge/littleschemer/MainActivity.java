@@ -1,6 +1,7 @@
 package com.example.chrisetheridge.littleschemer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
         cycleColors(btns);
     }
 
+    public void onNewSchemeTap(View view) {
+        Intent i = new Intent(this, ActivityAddScheme.class);
+
+        this.startActivity(i);
+    }
+
     private void cycleColors(LinearLayout btns) {
         ColorScheme color = ALL_COLOR_SCHEMES.get(randomNumberForColors());
         TextView uv = (TextView) findViewById(R.id.color_scheme_user_txt);
@@ -59,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadColors(Context ctx, String filepath) {
         try {
-            List<String[]> colordata = ColorFiles.Util.loadData(filepath, ",", ctx);
+            List<String[]> colordata = ColorsUtil.FileUtil.loadData(filepath, ",", ctx);
 
             for(String[] data : colordata) {
                 // we know the first 4 of the array is the scheme

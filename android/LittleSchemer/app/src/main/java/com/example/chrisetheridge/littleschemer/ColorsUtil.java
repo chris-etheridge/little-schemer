@@ -18,9 +18,9 @@ import java.util.List;
 /**
  * Created by chrisetheridge on 5/22/16.
  */
-public class ColorFiles {
+public class ColorsUtil {
 
-    public static class Util {
+    public static class FileUtil {
 
         private static BufferedReader bufr;
 
@@ -56,6 +56,12 @@ public class ColorFiles {
             return line.split(deli);
         }
 
+    }
+
+    public static class Util {
+        public static String rgbToHex(int r, int g, int b) {
+            return String.format( "#%02x%02x%02x", r, g, b );
+        }
     }
 
 }
