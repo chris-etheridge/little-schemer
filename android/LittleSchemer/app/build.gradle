@@ -25,4 +25,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.3.0'
     compile 'org.jetbrains:annotations-java5:15.0'
     compile 'org.jetbrains:annotations-java5:15.0'
+    compile 'com.android.support:design:23.0.1'
+    compile 'com.pes.materialcolorpicker:library:1.0.+'
 }
