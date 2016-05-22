@@ -29,8 +29,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent i = getIntent();
 
-        initUi(this);
+        if(i.getExtras() != null) {
+            if(i.getStringExtra("new_scheme_data") != null) {
+                String newscheme = i.getStringExtra("new_scheme_data");
+
+                ColorScheme s = ColorsUtil.FileUtil.parseLine(newscheme, ",");
+                LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
+
+                setUiButtons(btns, s, this);
+            }
+        } else {
+            initUi(this);
+        }
     }
 
     // initializes the ui
@@ -66,29 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void cycleColors(LinearLayout btns) {
         ColorScheme color = ALL_COLOR_SCHEMES.get(randomNumberForColors());
-        TextView uv = (TextView) findViewById(R.id.color_scheme_user_txt);
-        Button likeb = (Button) findViewById(R.id.like_color_btn);
-        ImageButton likeib = (ImageButton) findViewById(R.id.like_image_btn);
 
-        for(int i = 0; i < btns.getChildCount(); i++) {
-            Button b = (Button) btns.getChildAt(i);
-
-            b.setText(color.Colors[i]);
-            b.setBackgroundColor(Color.parseColor(color.Colors[i]));
-
-            Log.d("CHRIS", color.getSchemeForWriting());
-
-            // if the color is liked
-            if(color.Liked) {
-                likeb.setActivated(false);
-                likeib.setColorFilter(Color.RED);
-            } else {
-                likeb.setActivated(true);
-                likeib.setColorFilter(Color.BLACK);
-            }
-        }
-
-        uv.setText("user: " + color.UserName);
+        setUiButtons(btns, color, this);
     }
 
     private void loadColors(Context ctx, String filepath) {
@@ -113,6 +104,32 @@ public class MainActivity extends AppCompatActivity {
         Log.d("CHRIS", f.exists() + " ");
 
         return f.exists();
+    }
+
+    private void setUiButtons(LinearLayout btns, ColorScheme color, Context ctx) {
+        TextView uv = (TextView) findViewById(R.id.color_scheme_user_txt);
+        Button likeb = (Button) findViewById(R.id.like_color_btn);
+        //ImageButton likeib = (ImageButton) findViewById(R.id.like_image_btn);
+
+        for(int i = 0; i < btns.getChildCount(); i++) {
+            Button b = (Button) btns.getChildAt(i);
+
+            b.setText(color.Colors[i]);
+            b.setBackgroundColor(Color.parseColor(color.Colors[i]));
+
+            Log.d("CHRIS", color.getSchemeForWriting());
+
+            /* if the color is liked
+            if(color.Liked) {
+                likeb.setActivated(false);
+                likeib.setColorFilter(Color.RED);
+            } else {
+                likeb.setActivated(true);
+                likeib.setColorFilter(Color.BLACK);
+            }*/
+        }
+
+        uv.setText("user: " + color.UserName);
     }
 }
 

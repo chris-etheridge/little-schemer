@@ -35,20 +35,9 @@ public class ColorsUtil {
 
             while(line != null) {
                 // parse the lines
-                String[] d = parseLine(line, deli);
+                ColorScheme c = parseLine(line, deli);
 
-                if(d != null && d.length > 0) {
-                    // we know the first 4 of the array is the scheme
-                    String[] colors = {d[0], d[1], d[2], d[3]};
-                    // we know the username is the 5th item
-                    String name = d[4];
-                    // we know the like status is the last item
-                    Boolean liked = Boolean.parseBoolean(d[5]);
-
-                    ColorScheme s = new ColorScheme(colors, name, liked);
-
-                    cs.add(s);
-                }
+                cs.add(c);
 
                 line = bufr.readLine();
             }
@@ -89,8 +78,22 @@ public class ColorsUtil {
 
         // parses a single line from a data blob
         // requires a delimiter to be provided
-        private static String[] parseLine(String line, String deli) {
-            return line.split(deli);
+        public static ColorScheme parseLine(String line, String deli) {
+            String[] d = line.split(deli);
+            ColorScheme s = new ColorScheme();
+
+            if(d != null && d.length > 0) {
+                // we know the first 4 of the array is the scheme
+                String[] colors = {d[0], d[1], d[2], d[3]};
+                // we know the username is the 5th item
+                String name = d[4];
+                // we know the like status is the last item
+                Boolean liked = Boolean.parseBoolean(d[5]);
+
+                s = new ColorScheme(colors, name, liked);
+            }
+
+            return s;
         }
 
     }

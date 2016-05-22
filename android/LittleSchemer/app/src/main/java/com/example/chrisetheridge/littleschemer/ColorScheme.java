@@ -10,6 +10,8 @@ public class ColorScheme {
         Liked = liked;
     }
 
+    public ColorScheme() {}
+
     public String UserName;
 
     public String[] Colors;
@@ -22,7 +24,8 @@ public class ColorScheme {
                 + Colors[1] + ","
                 + Colors[2] + ","
                 + Colors[3] + ","
-                + UserName;
+                + UserName + ","
+                + Liked;
     }
 
     public String getUserName() {
