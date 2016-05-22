@@ -74,7 +74,7 @@ public class LittleSchemerV1 extends AppCompatActivity {
     }
 
     public void onNewSchemeTap(View view) {
-        Intent i = new Intent(this, ActivityAddScheme.class);
+        Intent i = new Intent(this, ActivityAddScheme_v1.class);
 
         this.startActivity(i);
     }

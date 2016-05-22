@@ -16,9 +16,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".AssignmentTwoMainMenu" />
-        <activity android:name=".ActivityAddScheme" />
+        <activity android:name=".ActivityAddScheme_v1" />
         <activity android:name=".LittleSchemerV2" />
-        <activity android:name=".ActivityHowTo"></activity>
+        <activity android:name=".ActivityHowTo" />
+        <activity android:name=".AddScheme_v2"></activity>
     </application>
 
 </manifest>
