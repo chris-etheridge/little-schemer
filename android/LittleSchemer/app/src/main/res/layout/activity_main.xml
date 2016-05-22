@@ -12,24 +12,71 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:clickable="true">
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="#b7569a"
+                android:text="#b7569a"
+                android:clickable="false"/>
+            
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="#883c82"
+                android:text="#883c82"
+                android:clickable="false"/>
+            
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="#e4f091"
+                android:text="#e4f091"
+                android:clickable="false"/>
+            
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="#f9cd76"
+                android:text="#f9cd76"
+                android:clickable="false"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1">
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:layout_weight="1"/>
 
-
-
-            </ListView>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:layout_weight="1"/>
 
         </LinearLayout>
+
+
 
     </LinearLayout>
 
