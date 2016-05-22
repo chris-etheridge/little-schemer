@@ -27,7 +27,6 @@
             android:orientation="vertical"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_weight="1"
             android:clickable="true"
             android:id="@+id/color_btns"
             android:onClick="onColorChangeViewTap"
@@ -66,15 +65,34 @@
                 android:clickable="false"
                 android:id="@+id/color_btn_4"/>
 
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
+                android:id="@+id/like_image_btn"
+                android:src="@mipmap/ic_favorite_icon"
+                android:background="@null"
+                android:layout_alignParentLeft="true"/>
+
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="end"
                 android:id="@+id/color_scheme_user_txt"
                 android:text="user: ------"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                android:layout_alignParentRight="true"/>
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -93,8 +111,9 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save"
-                android:layout_weight="1"/>
+                android:text="Like"
+                android:layout_weight="1"
+                android:id="@+id/like_color_btn"/>
 
             <Button
                 android:layout_width="wrap_content"

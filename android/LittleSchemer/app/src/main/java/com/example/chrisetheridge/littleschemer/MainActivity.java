@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,12 +54,23 @@ public class MainActivity extends AppCompatActivity {
     private void cycleColors(LinearLayout btns) {
         ColorScheme color = ALL_COLOR_SCHEMES.get(randomNumberForColors());
         TextView uv = (TextView) findViewById(R.id.color_scheme_user_txt);
+        Button likeb = (Button) findViewById(R.id.like_color_btn);
+        ImageButton likeib = (ImageButton) findViewById(R.id.like_image_btn);
 
         for(int i = 0; i < btns.getChildCount() - 1; i++) {
             Button b = (Button) btns.getChildAt(i);
 
             b.setText(color.Colors[i]);
             b.setBackgroundColor(Color.parseColor(color.Colors[i]));
+
+            // if the color is liked
+            if(color.Liked) {
+                likeb.setActivated(false);
+                likeib.setBackgroundColor(Color.RED);
+            } else {
+                likeb.setActivated(true);
+                likeib.setBackgroundColor(Color.GRAY);
+            }
         }
 
         uv.setText("user: " + color.UserName);
@@ -71,10 +83,12 @@ public class MainActivity extends AppCompatActivity {
             for(String[] data : colordata) {
                 // we know the first 4 of the array is the scheme
                 String[] colors = {data[0], data[1], data[2], data[3]};
-                // we knew the username is the last one
+                // we know the username is the 5th item
                 String name = data[4];
+                // we know the like status is the last item
+                Boolean liked = Boolean.parseBoolean(data[5]);
 
-                ColorScheme s = new ColorScheme(colors, name);
+                ColorScheme s = new ColorScheme(colors, name, liked);
 
                 ALL_COLOR_SCHEMES.add(s);
             }

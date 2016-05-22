@@ -4,14 +4,17 @@ package com.example.chrisetheridge.littleschemer;
  * Created by chrisetheridge on 5/22/16.
  */
 public class ColorScheme {
-    public ColorScheme(String[] colors, String name) {
+    public ColorScheme(String[] colors, String name, Boolean liked) {
         Colors = colors;
         UserName = name;
+        Liked = liked;
     }
 
     public String UserName;
 
     public String[] Colors;
+
+    public boolean Liked;
 
     // preps the scheme for writing to file
     public String getSchemeForWriting() {
