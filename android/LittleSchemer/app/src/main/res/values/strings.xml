@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Little Schemer</string>
+    <string name="schemer_intro_text">Tap the colors or the "Next" button to generate a new scheme!</string>
 </resources>
