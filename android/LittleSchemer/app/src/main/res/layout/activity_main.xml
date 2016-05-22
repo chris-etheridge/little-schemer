@@ -22,7 +22,9 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_weight="1"
-            android:clickable="true">
+            android:clickable="true"
+            android:id="@+id/color_btns"
+            android:onClick="onColorChangeViewTap">
 
 
             <Button
@@ -30,28 +32,32 @@
                 android:layout_height="75dp"
                 android:background="#b7569a"
                 android:text="#b7569a"
-                android:clickable="false"/>
+                android:clickable="false"
+                android:id="@+id/color_btn_1"/>
             
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:background="#883c82"
                 android:text="#883c82"
-                android:clickable="false"/>
+                android:clickable="false"
+                android:id="@+id/color_btn_2"/>
             
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:background="#e4f091"
                 android:text="#e4f091"
-                android:clickable="false"/>
+                android:clickable="false"
+                android:id="@+id/color_btn_3"/>
             
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:background="#f9cd76"
                 android:text="#f9cd76"
-                android:clickable="false"/>
+                android:clickable="false"
+                android:id="@+id/color_btn_4"/>
 
         </LinearLayout>
 
@@ -66,7 +72,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Next"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:onClick="onColorChangeViewTap"/>
 
             <Button
                 android:layout_width="wrap_content"

@@ -1,11 +1,16 @@
 package com.example.chrisetheridge.littleschemer;
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.util.Log;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,11 +27,11 @@ public class ColorFiles {
         // main method which loads our data from a file PATH
         // also parses the data with a delimiter
         public static List<String[]> loadData(String path, String deli, Context ctx) {
-            File f = new File(path);
-            List<String[]> cs = new ArrayList<String[]>();
+            AssetManager as = ctx.getAssets();
+            List<String[]> cs = new ArrayList();
 
             try {
-                bufr = new BufferedReader(new FileReader(path));
+                bufr = new BufferedReader(new InputStreamReader(as.open(path)));
                 String line = bufr.readLine();
 
                 while(line != null) {
@@ -37,8 +42,11 @@ public class ColorFiles {
                         // add our set of colors to the list
                         cs.add(d);
                     }
+
+                    line = bufr.readLine();
                 }
 
+                bufr.close();
             }
 
             catch (IOException e) {
