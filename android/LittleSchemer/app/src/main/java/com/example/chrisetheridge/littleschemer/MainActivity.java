@@ -81,20 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadColors(Context ctx, String filepath) {
         try {
-            List<String[]> colordata = ColorsUtil.FileUtil.loadData(filepath, ",", ctx);
-
-            for(String[] data : colordata) {
-                // we know the first 4 of the array is the scheme
-                String[] colors = {data[0], data[1], data[2], data[3]};
-                // we know the username is the 5th item
-                String name = data[4];
-                // we know the like status is the last item
-                Boolean liked = Boolean.parseBoolean(data[5]);
-
-                ColorScheme s = new ColorScheme(colors, name, liked);
-
-                ALL_COLOR_SCHEMES.add(s);
-            }
+            ALL_COLOR_SCHEMES = ColorsUtil.FileUtil.loadData(FILE_PATH, ",", this);
 
             Toast.makeText(ctx, "Colors file loaded successfully!", Toast.LENGTH_SHORT).show();
         } catch(IOException e) {
