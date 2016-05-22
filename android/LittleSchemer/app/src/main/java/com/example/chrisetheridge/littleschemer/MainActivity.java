@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -44,13 +45,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void cycleColors(LinearLayout btns) {
         ColorScheme color = ALL_COLOR_SCHEMES.get(randomNumberForColors());
+        TextView uv = (TextView) findViewById(R.id.color_scheme_user_txt);
 
-        for(int i = 0; i < btns.getChildCount(); i++) {
+        for(int i = 0; i < btns.getChildCount() - 1; i++) {
             Button b = (Button) btns.getChildAt(i);
 
             b.setText(color.Colors[i]);
             b.setBackgroundColor(Color.parseColor(color.Colors[i]));
         }
+
+        uv.setText("user: " + color.UserName);
     }
 
     private void loadColors(Context ctx, String filepath) {
