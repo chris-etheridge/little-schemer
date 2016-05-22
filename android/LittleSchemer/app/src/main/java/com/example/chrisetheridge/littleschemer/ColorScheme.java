@@ -11,6 +11,12 @@ public class ColorScheme {
         _id = id;
     }
 
+    public ColorScheme(String[] colors, String name, Boolean liked) {
+        Colors = colors;
+        UserName = name;
+        Liked = liked;
+    }
+
     public ColorScheme() {}
 
     public String UserName;
