@@ -1,7 +1,9 @@
 package com.example.chrisetheridge.littleschemer;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class AddScheme_v2 extends AppCompatActivity {
 
@@ -9,5 +11,17 @@ public class AddScheme_v2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_scheme_v2);
+    }
+
+    public void onSaveButtonOnTap(View view) {
+
+    }
+
+    public void onCancelButtonOnTap(View view) {
+        Intent i = new Intent(this, LittleSchemerMain_v2.class);
+
+        startActivity(i);
+
+        finish();
     }
 }

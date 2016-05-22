@@ -13,7 +13,7 @@ import com.example.chrisetheridge.littleschemer.model.ColorScheme;
 import com.example.chrisetheridge.littleschemer.utils.ColorsUtil;
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 
-public class ActivityAddScheme_v1 extends Activity {
+public class AddScheme_v1 extends Activity {
 
     private ColorPicker COLOR_PICKER;
     private final String SAVE_FILE_PATH = "schemes.txt";
