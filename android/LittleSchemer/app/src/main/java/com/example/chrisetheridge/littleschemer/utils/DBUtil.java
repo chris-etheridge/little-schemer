@@ -219,7 +219,7 @@ public class DBUtil {
         return this;
     }
 
-    // db close helper
+    // db close helper  
     public void close() {
         _dbhelper.close();
     }
