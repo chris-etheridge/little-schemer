@@ -47,7 +47,7 @@ public class ActivityAddScheme extends Activity {
     }
 
     public void onCancelButtonTap(View view) {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, LittleSchemerV1.class);
 
         startActivity(i);
     }
@@ -73,7 +73,7 @@ public class ActivityAddScheme extends Activity {
             ColorsUtil.FileUtil.saveOneSchemeToFile(newscheme, SAVE_FILE_PATH, this);
 
             // show the new intent
-            Intent i = new Intent(this, MainActivity.class);
+            Intent i = new Intent(this, LittleSchemerV1.class);
             i.putExtra("new_scheme_data", newscheme.getSchemeForWriting());
 
             startActivity(i);

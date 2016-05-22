@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class LittleSchemerV1 extends AppCompatActivity {
 
     private final String SEED_DATA_PATH = "scheme_data.txt";
     private final String SAVE_FILE_PATH = "schemes.txt";
