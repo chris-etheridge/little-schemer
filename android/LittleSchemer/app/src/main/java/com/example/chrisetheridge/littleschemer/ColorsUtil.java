@@ -58,8 +58,8 @@ public class ColorsUtil {
             return cs;
         }
 
-        // saves a color to the file
-        public void saveColor(ArrayList<ColorScheme> schemes, String path, Context ctx) throws IOException {
+        // saves color schemes to the file
+        public static void saveColorSchemes(ArrayList<ColorScheme> schemes, String path, Context ctx) throws IOException {
             try {
                 FileOutputStream fout = ctx.openFileOutput(path, Context.MODE_PRIVATE);
                 PrintWriter wrtr = new PrintWriter(fout, true);
@@ -80,8 +80,11 @@ public class ColorsUtil {
 
         // sets up the data
         // saves our seed colors to the phone
-        public void setupData(String path, String deli, Context ctx) {
+        public static void setupData(String inpath, String outpath, String deli, Context ctx) throws IOException {
+            ArrayList<ColorScheme> cs = loadData(inpath, deli, ctx);
 
+            // save our schemes to the file
+            saveColorSchemes(cs, outpath, ctx);
         }
 
         // parses a single line from a data blob

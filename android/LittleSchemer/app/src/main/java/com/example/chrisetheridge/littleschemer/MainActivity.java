@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final String FILE_PATH = "scheme_data.txt";
+    private final String SEED_DATA_PATH = "scheme_data.txt";
+    private final String SAVE_FILE_PATH = "schemes.txt";
     private List<ColorScheme> ALL_COLOR_SCHEMES = new ArrayList<>();
 
     @Override
@@ -33,7 +35,17 @@ public class MainActivity extends AppCompatActivity {
 
     // initializes the ui
     private void initUi(Context ctx) {
-        loadColors(ctx, FILE_PATH);
+        loadColors(ctx, SEED_DATA_PATH);
+
+        // check if our db exists or not
+        if(!checkForColorsDb()) {
+            try {
+                // setup the data if it does not exist
+                ColorsUtil.FileUtil.setupData(SEED_DATA_PATH, SAVE_FILE_PATH, ",", this);
+            } catch (IOException e) {
+
+            }
+        }
 
         LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
 
@@ -81,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadColors(Context ctx, String filepath) {
         try {
-            ALL_COLOR_SCHEMES = ColorsUtil.FileUtil.loadData(FILE_PATH, ",", this);
+            ALL_COLOR_SCHEMES = ColorsUtil.FileUtil.loadData(SEED_DATA_PATH, ",", this);
 
             Toast.makeText(ctx, "Colors file loaded successfully!", Toast.LENGTH_SHORT).show();
         } catch(IOException e) {
@@ -93,6 +105,14 @@ public class MainActivity extends AppCompatActivity {
         Random r = new Random();
 
         return r.nextInt(ALL_COLOR_SCHEMES.size());
+    }
+
+    private boolean checkForColorsDb() {
+        File f = new File("schemes.txt");
+
+        Log.d("CHRIS", f.exists() + " ");
+
+        return f.exists();
     }
 }
 

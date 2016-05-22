@@ -73,14 +73,14 @@
             android:orientation="horizontal"
             android:layout_marginTop="5dp">
 
-            <ImageButton
+            <!-- <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="start"
                 android:id="@+id/like_image_btn"
                 android:src="@mipmap/ic_favorite_icon"
                 android:background="@null"
-                android:layout_alignParentLeft="true"/>
+                android:layout_alignParentLeft="true"/> -->
 
             <TextView
                 android:layout_width="wrap_content"
