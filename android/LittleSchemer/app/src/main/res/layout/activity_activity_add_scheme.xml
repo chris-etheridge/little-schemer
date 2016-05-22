@@ -24,17 +24,80 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Colors"/>
-
-        <EditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/color_one"
-            android:onClick="onColorTextFieldTap"/>
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:id="@+id/color_btns"
+            android:layout_marginTop="20dp">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Tap a color to edit it."
+                android:layout_marginBottom="20dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="#b7569a"
+                android:text="#b7569a"
+                android:clickable="true"
+                android:id="@+id/color_btn_1"
+                android:onClick="onColorTextFieldTap"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="#883c82"
+                android:text="#883c82"
+                android:clickable="true"
+                android:id="@+id/color_btn_2"
+                android:onClick="onColorTextFieldTap"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="#e4f091"
+                android:text="#e4f091"
+                android:clickable="true"
+                android:id="@+id/color_btn_3"
+                android:onClick="onColorTextFieldTap"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:background="#f9cd76"
+                android:text="#f9cd76"
+                android:clickable="true"
+                android:id="@+id/color_btn_4"
+                android:onClick="onColorTextFieldTap"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:onClick="onSaveButtonTap"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:onClick="onCancelButtonTap"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

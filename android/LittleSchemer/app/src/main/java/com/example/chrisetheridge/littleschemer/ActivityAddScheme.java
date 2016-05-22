@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 
@@ -22,7 +23,7 @@ public class ActivityAddScheme extends Activity {
         COLOR_PICKER = new ColorPicker(this, 200, 100, 100);
     }
 
-    public void onColorTextFieldTap(View view) {
+    public void onColorTextFieldTap(final View view) {
         COLOR_PICKER.show();
 
         /* Using this colorpicker lib: https://github.com/Pes8/android-material-color-picker-dialog */
@@ -36,8 +37,15 @@ public class ActivityAddScheme extends Activity {
                 String color = ColorsUtil.Util.rgbToHex(COLOR_PICKER.getRed(),
                         COLOR_PICKER.getGreen(), COLOR_PICKER.getBlue());
 
+                ((Button) view).setText(color);
+                ((Button) view).setBackgroundColor(Color.parseColor(color));
+
                 COLOR_PICKER.dismiss();
             }
         });
     }
+
+    public void onCancelButtonTap(View view) {}
+
+    public void onSaveButtonTap(View view) {}
 }
