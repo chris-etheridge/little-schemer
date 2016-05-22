@@ -4,25 +4,20 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     private final String FILE_PATH = "clean_data.txt";
-    private List<ColorScheme> ALL_COLORSHEMES;
+    private List<ColorScheme> ALL_COLOR_SCHEMES = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void cycleColors(LinearLayout btns) {
-        ColorScheme color = ALL_COLORSHEMES.get(randomNumberForColors());
+        ColorScheme color = ALL_COLOR_SCHEMES.get(randomNumberForColors());
 
         for(int i = 0; i < btns.getChildCount(); i++) {
             Button b = (Button) btns.getChildAt(i);
@@ -66,7 +61,11 @@ public class MainActivity extends AppCompatActivity {
                 // we know the first 4 of the array is the scheme
                 String[] colors = {data[0], data[1], data[2], data[3]};
                 // we knew the username is the last one
-                String name = data[5];
+                String name = data[4];
+
+                ColorScheme s = new ColorScheme(colors, name);
+
+                ALL_COLOR_SCHEMES.add(s);
             }
 
             Toast.makeText(ctx, "Colors file loaded successfully!", Toast.LENGTH_SHORT).show();
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private int randomNumberForColors() {
         Random r = new Random();
 
-        return r.nextInt(ALL_COLORS.size());
+        return r.nextInt(ALL_COLOR_SCHEMES.size());
     }
 }
 
