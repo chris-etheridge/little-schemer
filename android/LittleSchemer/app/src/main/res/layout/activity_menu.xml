@@ -78,12 +78,14 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Schemes"/>
+                    android:text="Schemes"
+                    android:onClick="schemesButtonOnTap"/>
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="How To"/>
+                    android:text="How To"
+                    android:onClick="howToButtonOnTap"/>
 
             </LinearLayout>
 
