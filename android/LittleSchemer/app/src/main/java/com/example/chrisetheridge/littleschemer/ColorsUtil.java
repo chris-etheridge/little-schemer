@@ -2,17 +2,11 @@ package com.example.chrisetheridge.littleschemer;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.util.Log;
 
 import java.io.BufferedReader;
-import java.io.Console;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -50,6 +44,11 @@ public class ColorsUtil {
             return cs;
         }
 
+        // saves a color to the file
+        public void saveColor(String[] colors, String username, boolean liked) {
+
+        }
+
         // parses a single line from a data blob
         // requires a delimiter to be provided
         private static String[] parseLine(String line, String deli) {
@@ -58,7 +57,10 @@ public class ColorsUtil {
 
     }
 
+    // generic utilities
     public static class Util {
+
+        // converts an rgb code to a hex code
         public static String rgbToHex(int r, int g, int b) {
             return String.format( "#%02x%02x%02x", r, g, b );
         }

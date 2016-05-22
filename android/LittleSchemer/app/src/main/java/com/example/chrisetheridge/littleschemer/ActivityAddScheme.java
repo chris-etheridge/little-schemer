@@ -1,13 +1,11 @@
 package com.example.chrisetheridge.littleschemer;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
-import android.support.v4.graphics.ColorUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 
@@ -45,7 +43,13 @@ public class ActivityAddScheme extends Activity {
         });
     }
 
-    public void onCancelButtonTap(View view) {}
+    public void onCancelButtonTap(View view) {
+        Intent i = new Intent(this, MainActivity.class);
+
+        startActivity(i);
+    }
 
     public void onSaveButtonTap(View view) {}
+
+    private void saveColor(String[] colors, String name) {}
 }
