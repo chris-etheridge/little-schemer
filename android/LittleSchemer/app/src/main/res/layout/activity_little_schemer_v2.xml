@@ -1,12 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.chrisetheridge.littleschemer.LittleSchemerV2">
+    tools:context=".LittleSchemerV1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/schemer_intro_text"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:clickable="true"
+            android:id="@+id/color_btns"
+            android:onClick="onColorChangeViewTap"
+            android:layout_marginTop="20dp">
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="#b7569a"
+                android:text="#b7569a"
+                android:clickable="false"
+                android:id="@+id/color_btn_1"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="#883c82"
+                android:text="#883c82"
+                android:clickable="false"
+                android:id="@+id/color_btn_2"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="#e4f091"
+                android:text="#e4f091"
+                android:clickable="false"
+                android:id="@+id/color_btn_3"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:background="#f9cd76"
+                android:text="#f9cd76"
+                android:clickable="false"
+                android:id="@+id/color_btn_4"/>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="start"
+                android:id="@+id/like_image_btn"
+                android:src="@mipmap/ic_favorite_icon"
+                android:background="@null"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:gravity="end"
+                android:id="@+id/color_scheme_user_txt"
+                android:text="user: ------"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_weight="1">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:layout_weight="1"
+                android:onClick="onColorChangeViewTap"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Like"
+                android:layout_weight="1"
+                android:id="@+id/like_color_btn"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:layout_weight="1"
+                android:id="@+id/edit_color_btn"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New"
+                android:onClick="onNewSchemeTap"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
 
 </RelativeLayout>

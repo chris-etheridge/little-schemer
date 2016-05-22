@@ -17,7 +17,8 @@
         </activity>
         <activity android:name=".AssignmentTwoMainMenu" />
         <activity android:name=".ActivityAddScheme" />
-        <activity android:name=".LittleSchemerV2"></activity>
+        <activity android:name=".LittleSchemerV2" />
+        <activity android:name=".ActivityHowTo"></activity>
     </application>
 
 </manifest>
