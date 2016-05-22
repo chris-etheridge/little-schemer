@@ -11,7 +11,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -57,7 +59,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadColors(Context ctx, String filepath) {
-        ALL_COLORS =  ColorFiles.Util.loadData(filepath, ",", ctx);
+        try {
+            ALL_COLORS = ColorFiles.Util.loadData(filepath, ",", ctx);
+
+            Toast.makeText(ctx, "Colors file loaded successfully!", Toast.LENGTH_SHORT).show();
+        } catch(IOException e) {
+            Toast.makeText(ctx, "There was an error loading the file!", Toast.LENGTH_LONG).show();
+        }
     }
 
     private int randomNumberForColors() {

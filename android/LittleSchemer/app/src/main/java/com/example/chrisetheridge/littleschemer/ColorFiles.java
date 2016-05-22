@@ -26,32 +26,26 @@ public class ColorFiles {
 
         // main method which loads our data from a file PATH
         // also parses the data with a delimiter
-        public static List<String[]> loadData(String path, String deli, Context ctx) {
+        public static List<String[]> loadData(String path, String deli, Context ctx) throws IOException {
             AssetManager as = ctx.getAssets();
             List<String[]> cs = new ArrayList();
 
-            try {
-                bufr = new BufferedReader(new InputStreamReader(as.open(path)));
-                String line = bufr.readLine();
+            bufr = new BufferedReader(new InputStreamReader(as.open(path)));
+            String line = bufr.readLine();
 
-                while(line != null) {
-                    // parse the lines
-                    String[] d = parseLine(line, deli);
+            while(line != null) {
+                // parse the lines
+                String[] d = parseLine(line, deli);
 
-                    if(d != null && d.length > 0) {
-                        // add our set of colors to the list
-                        cs.add(d);
-                    }
-
-                    line = bufr.readLine();
+                if(d != null && d.length > 0) {
+                    // add our set of colors to the list
+                    cs.add(d);
                 }
 
-                bufr.close();
+                line = bufr.readLine();
             }
 
-            catch (IOException e) {
-                // do nothing (for now)
-            }
+            bufr.close();
 
             return cs;
         }
