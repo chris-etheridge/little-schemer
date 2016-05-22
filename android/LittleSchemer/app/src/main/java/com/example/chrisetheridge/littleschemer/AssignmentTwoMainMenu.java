@@ -14,13 +14,13 @@ public class AssignmentTwoMainMenu extends AppCompatActivity {
     }
 
     public void questionOneOnTap(View view) {
-        Intent i = new Intent(this, LittleSchemerV1.class);
+        Intent i = new Intent(this, LittleSchemerMain_v1.class);
 
         startActivity(i);
     }
 
     public void questionTwoOnTap(View view) {
-        Intent i = new Intent(this, LittleSchemerV2.class);
+        Intent i = new Intent(this, LittleSchemerMain_v2.class);
 
         startActivity(i);
     }
