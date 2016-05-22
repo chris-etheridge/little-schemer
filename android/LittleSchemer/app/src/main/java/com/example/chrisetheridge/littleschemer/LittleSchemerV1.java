@@ -117,8 +117,6 @@ public class LittleSchemerV1 extends AppCompatActivity {
             b.setText(color.Colors[i]);
             b.setBackgroundColor(Color.parseColor(color.Colors[i]));
 
-            Log.d("CHRIS", color.getSchemeForWriting());
-
             /* if the color is liked
             if(color.Liked) {
                 likeb.setActivated(false);

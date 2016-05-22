@@ -1,9 +1,12 @@
 package com.example.chrisetheridge.littleschemer;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Color;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -67,13 +70,76 @@ public class DBUtil {
         }
     }
 
-    public long insertScheme(ColorScheme cs) {}
+    public long insertScheme(ColorScheme cs) {
+        ContentValues initvals = new ContentValues();
 
-    public boolean deleteScheme(long id) {}
+        initvals.put(KEY_COLOR + 1, cs.Colors[0]);
+        initvals.put(KEY_COLOR + 2, cs.Colors[1]);
+        initvals.put(KEY_COLOR + 3, cs.Colors[2]);
+        initvals.put(KEY_COLOR + 4, cs.Colors[3]);
+        initvals.put(KEY_UNAME, cs.UserName);
 
-    public ArrayList<ColorScheme> getAllSchemes() {}
+        return db.insert(DB_TABLE_SCHEMES, null, initvals);
+    }
 
-    public ArrayList<ColorScheme> getLikedSchemes() {}
+    public boolean deleteScheme(long id) {
+        return db.delete(DB_TABLE_SCHEMES, KEY_ROWID + "=" + id, null) > 0;
+    }
+
+    public ArrayList<ColorScheme> getAllSchemes() {
+        ArrayList<ColorScheme> allcs = new ArrayList();
+
+        Cursor c = db.query(DB_TABLE_SCHEMES,
+                new String[] {KEY_ROWID, KEY_COLOR + 1, KEY_COLOR + 2,
+                        KEY_COLOR + 3, KEY_COLOR + 4, KEY_UNAME}, null, null, null, null, null);
+
+        if(c != null) {
+            while(c.moveToNext()) {
+                String color_1 = c.getString(c.getColumnIndex(KEY_COLOR + 1));
+                String color_2 = c.getString(c.getColumnIndex(KEY_COLOR + 1));
+                String color_3 = c.getString(c.getColumnIndex(KEY_COLOR + 1));
+                String color_4 = c.getString(c.getColumnIndex(KEY_COLOR + 1));
+                String name = c.getString(c.getColumnIndex(KEY_UNAME));
+                int id = Integer.parseInt(c.getString(c.getColumnIndex(KEY_ROWID)));
+
+                String[] colors = {color_1, color_2, color_3, color_4};
+
+                ColorScheme news = new ColorScheme(id, colors, name, false);
+
+                allcs.add(news);
+            }
+        }
+
+        return allcs;
+    }
+
+    public ArrayList<ColorScheme> getLikedSchemes() {
+        ArrayList<ColorScheme> allcs = new ArrayList();
+
+        Cursor c = db.rawQuery("select * " +
+            "from " + DB_TABLE_SCHEMES + " sc "
+            + DB_TABLE_USER + " u "
+            + "where u.color_scheme_id = sc_id", null);
+
+        if(c != null) {
+            while(c.moveToNext()) {
+                String color_1 = c.getString(c.getColumnIndex(KEY_COLOR + 1));
+                String color_2 = c.getString(c.getColumnIndex(KEY_COLOR + 1));
+                String color_3 = c.getString(c.getColumnIndex(KEY_COLOR + 1));
+                String color_4 = c.getString(c.getColumnIndex(KEY_COLOR + 1));
+                String name = c.getString(c.getColumnIndex(KEY_UNAME));
+                int id = Integer.parseInt(c.getString(c.getColumnIndex(KEY_ROWID)));
+
+                String[] colors = {color_1, color_2, color_3, color_4};
+
+                ColorScheme news = new ColorScheme(id, colors, name, false);
+
+                allcs.add(news);
+            }
+        }
+
+        return allcs;
+    }
 
     public DBUtil open() throws SQLException {
         db = _dbhelper.getWritableDatabase();
