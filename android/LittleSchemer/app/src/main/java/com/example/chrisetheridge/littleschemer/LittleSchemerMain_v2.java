@@ -22,9 +22,13 @@ import java.util.Random;
 
 // v2 uses an sql lite db
 public class LittleSchemerMain_v2 extends AppCompatActivity {
+    // seed data file path constant
     private final String SEED_DATA_PATH = "scheme_data.txt";
+
+    // all our color schemes
     private List<ColorScheme> ALL_COLOR_SCHEMES = new ArrayList<>();
 
+    // db
     private DBUtil _db;
 
     @Override
@@ -33,23 +37,29 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
         setContentView(R.layout.activity_little_schemer_v2);
         Intent i = getIntent();
 
+        // load our db into memory
         _db = new DBUtil(this);
 
         // load up colors
         loadColors(this);
 
+        // check if the intent has extras
         if(i.getExtras() != null) {
             if(i.getStringExtra("new_scheme_data") != null) {
                 String newscheme = i.getStringExtra("new_scheme_data");
 
+                // parse the extra into a colorscheme
                 ColorScheme s = ColorsUtil.FileUtil.parseLine(newscheme, ",");
                 LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
 
+                // setup the ui
                 setUiButtons(btns, s, this);
 
+                // show the user a success message
                 Toast.makeText(this, "Color saved successfully!", Toast.LENGTH_SHORT);
             }
         } else {
+            // init the ui
             initUi(this);
         }
     }
@@ -60,6 +70,7 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
         try {
             _db.open();
 
+            // install our schemes
             _db.runSchemerInstall(SEED_DATA_PATH, ctx);
 
             _db.close();
@@ -69,50 +80,65 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
 
         LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
 
+        // cycle the colors
         cycleColors(btns);
     }
 
+    // method for when the color view is tapped
     public void onColorChangeViewTap(View view) {
         LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
 
         cycleColors(btns);
     }
 
+    // method for when the new button is tapped
     public void onNewSchemeTap(View view) {
         Intent i = new Intent(this, AddScheme_v2.class);
 
         this.startActivity(i);
     }
 
+    // method to cycle a random color scheme
     private void cycleColors(LinearLayout btns) {
+        // get a random color scheme
         ColorScheme color = ALL_COLOR_SCHEMES.get(randomNumberForColors());
 
+        // setup the ui with the new scheme
         setUiButtons(btns, color, this);
     }
 
+    // loads our colors from the db
     private void loadColors(Context ctx) {
         try {
             _db.open();
 
+            // get all the schemes
             ALL_COLOR_SCHEMES = _db.getAllSchemes();
 
             _db.close();
 
+            // show a success message
             Toast.makeText(ctx, "Colors loaded successfully!", Toast.LENGTH_SHORT).show();
         } catch(Exception e) {
+            // show an error message if there was one
             Toast.makeText(ctx, "There was an error loading the colors!", Toast.LENGTH_LONG).show();
         }
     }
 
+    // get a random number from the length of color schemes
     private int randomNumberForColors() {
         Random r = new Random();
 
         return r.nextInt(ALL_COLOR_SCHEMES.size());
     }
 
+    // sets up the ui for the buttons
+    // TODO: brittle code - assumes the layout of btns is only 4 buttons
     private void setUiButtons(LinearLayout btns, ColorScheme color, Context ctx) {
         TextView uv = (TextView) findViewById(R.id.color_scheme_user_txt);
 
+        // go through all buttons and set their color to the corresponding
+        // color in our scheme
         for(int i = 0; i < btns.getChildCount(); i++) {
             Button b = (Button) btns.getChildAt(i);
 

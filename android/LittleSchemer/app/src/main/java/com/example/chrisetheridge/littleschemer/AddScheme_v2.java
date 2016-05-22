@@ -15,6 +15,7 @@ import com.example.chrisetheridge.littleschemer.utils.ColorsUtil;
 import com.example.chrisetheridge.littleschemer.utils.DBUtil;
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 
+// activity for question 2 to add a scheme
 public class AddScheme_v2 extends AppCompatActivity {
 
     private DBUtil _db;

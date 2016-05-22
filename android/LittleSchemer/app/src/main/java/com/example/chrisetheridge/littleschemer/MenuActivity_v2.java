@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+// menu activity for question 2
+// does not do much other than direct the user to other activities
 public class MenuActivity_v2 extends AppCompatActivity {
 
     @Override

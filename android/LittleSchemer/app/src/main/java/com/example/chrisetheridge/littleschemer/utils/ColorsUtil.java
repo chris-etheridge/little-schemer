@@ -12,8 +12,10 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+// our top level colors utility class
 public class ColorsUtil {
 
+    // utility for dealing with color scheme files
     public static class FileUtil {
 
         private static BufferedReader bufr;
@@ -24,9 +26,11 @@ public class ColorsUtil {
             AssetManager as = ctx.getAssets();
             ArrayList<ColorScheme> cs = new ArrayList();
 
+            // load our file
             bufr = new BufferedReader(new InputStreamReader(as.open(path)));
             String line = bufr.readLine();
 
+            // loop through the lines of the file
             while(line != null) {
                 // parse the lines
                 ColorScheme c = parseLine(line, deli);
@@ -41,12 +45,17 @@ public class ColorsUtil {
             return cs;
         }
 
+        // loads the data
+        // this differs from loadSeedData as it loads from the file from the application and not
+        // the seed scheme data
         public static ArrayList<ColorScheme> loadData(String path, String deli, Context ctx) throws IOException {
             ArrayList<ColorScheme> cs = new ArrayList();
 
+            // load our file
             bufr = new BufferedReader(new InputStreamReader(ctx.openFileInput(path)));
             String line = bufr.readLine();
 
+            // loop through the files lines
             while(line != null) {
                 // parse the lines
                 ColorScheme c = parseLine(line, deli);
@@ -68,12 +77,14 @@ public class ColorsUtil {
                 FileOutputStream fout = ctx.openFileOutput(path, Context.MODE_PRIVATE);
                 PrintWriter wrtr = new PrintWriter(fout, true);
 
+                // loop through our schemes and write them to the file
                 for(ColorScheme sc : schemes) {
                     String line = sc.getSchemeForWriting();
 
                     wrtr.println(line);
                 }
 
+                // flush & close
                 wrtr.flush();
                 wrtr.close();
 
@@ -95,12 +106,15 @@ public class ColorsUtil {
         // this appends to the file
         public static void saveOneSchemeToFile(ColorScheme cs, String path, Context ctx) {
             try {
+                // open a file and get the line for writing from the scheme
                 FileOutputStream fout = ctx.openFileOutput(path, Context.MODE_APPEND);
                 PrintWriter wrtr = new PrintWriter(fout, true);
                 String line = cs.getSchemeForWriting();
 
+                // write our line
                 wrtr.println(line);
 
+                // flush & close
                 wrtr.flush();
                 wrtr.close();
 
@@ -131,7 +145,7 @@ public class ColorsUtil {
 
     }
 
-    // generic utilities
+    // generic utilities for color schemes
     public static class Util {
 
         // converts an rgb code to a hex code

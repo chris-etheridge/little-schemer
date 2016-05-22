@@ -13,6 +13,7 @@ import com.example.chrisetheridge.littleschemer.model.ColorScheme;
 import com.example.chrisetheridge.littleschemer.utils.ColorsUtil;
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 
+// activity for question 1 to add a scheme
 public class AddScheme_v1 extends Activity {
 
     private ColorPicker COLOR_PICKER;

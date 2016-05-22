@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+// main menu activity for the entire assignment
+// does not do much other than direct to other activities
 public class AssignmentTwoMainMenu extends AppCompatActivity {
 
     @Override

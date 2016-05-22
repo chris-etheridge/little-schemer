@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+// activity that shows how to instructions
+// nothing special / cool happens here
 public class ActivityHowTo extends AppCompatActivity {
 
     @Override
