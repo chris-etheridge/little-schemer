@@ -27,7 +27,7 @@ public class LittleSchemerV1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_little_schemer_v1);
         Intent i = getIntent();
 
         if(i.getExtras() != null) {
