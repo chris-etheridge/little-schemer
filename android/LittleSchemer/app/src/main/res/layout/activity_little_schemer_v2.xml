@@ -81,6 +81,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="start"
                 android:id="@+id/like_image_btn"
+                android:onClick="onLikeButtonTap"
                 android:src="@mipmap/ic_favorite_icon"
                 android:background="@null"
                 android:layout_alignParentLeft="true"/>
@@ -114,7 +115,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edit"
+                android:text="Delete"
                 android:layout_weight="1"
                 android:id="@+id/edit_color_btn"/>
 

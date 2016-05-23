@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -85,16 +86,31 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
         this.startActivity(i);
     }
 
+    // like the scheme
     public void onLikeButtonTap(View view) {
+        // make the color scheme liked
+        CURRENT_SCHEME.Liked = 1;
 
+        // update
+        _db.open();
+
+        _db.updateScheme(CURRENT_SCHEME);
+
+        _db.close();
+
+        // update our ui to show the liked
+        ImageButton likeib = (ImageButton) findViewById(R.id.like_image_btn);
+
+        likeib.setColorFilter(Color.RED);
+
+        // show a toast
+        Toast.makeText(this, "Scheme liked!", Toast.LENGTH_SHORT).show();
     }
 
     /// PRIVATE METHODS
 
     // method to cycle a random color scheme
     private void cycleColors(LinearLayout btns) {
-        Log.d("CHIRS", ALL_COLOR_SCHEMES.size() + "");
-
         // get a random color scheme
         ColorScheme color = ALL_COLOR_SCHEMES.get(randomNumberForColors());
 
@@ -157,6 +173,7 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
     // TODO: brittle code - assumes the layout of btns is only 4 buttons
     private void setUiButtons(LinearLayout btns, ColorScheme color, Context ctx) {
         TextView uv = (TextView) findViewById(R.id.color_scheme_user_txt);
+        ImageButton likeib = (ImageButton) findViewById(R.id.like_image_btn);
 
         // go through all buttons and set their color to the corresponding
         // color in our scheme
@@ -166,6 +183,13 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
             b.setText(color.Colors[i]);
             b.setBackgroundColor(Color.parseColor(color.Colors[i]));
 
+        }
+
+        // check if the scheme is liked
+        if(color.Liked == 1) {
+            likeib.setColorFilter(Color.RED);
+        } else {
+            likeib.setColorFilter(Color.BLACK);
         }
 
         uv.setText("user: " + color.UserName);
