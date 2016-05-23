@@ -22,13 +22,15 @@ public class DBUtil {
     private String KEY_COLOR = "color_";
     private String KEY_LIKED = "liked";
 
+    private String SEED_DATA_PATH = "scheme_data.txt";
+
     // db table constants
     private String DB_NAME = "little_schemer_db";
     private String DB_TABLE_SCHEMES = "color_schemes";
     private String CHECK_TABLE_EXISTS = "SELECT name FROM sqlite_master WHERE type='table' AND name='color_schemes'";
 
     // our db version
-    private int DB_VERSION = 5;
+    private int DB_VERSION = 18;
 
     // query to create scheme table
     final String CREATE_TABLE_SCHEMES = "create table " + DB_TABLE_SCHEMES +
@@ -56,10 +58,18 @@ public class DBUtil {
         }
 
         @Override
-        public void onCreate(SQLiteDatabase db) {
+        public void onCreate(SQLiteDatabase aDb) {
             try {
                 // create our tables
                 db.execSQL(CREATE_TABLE_SCHEMES);
+
+                // insert our seed data from the path
+                try {
+                    insertSeedData(SEED_DATA_PATH, ",", context, db);
+                }
+                catch (IOException e) {
+
+                }
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -75,33 +85,15 @@ public class DBUtil {
         }
     }
 
-    // essentially 'installs' the db
-    // creates the db abd loads the seed data
-    public void runSchemerInstall(String path, Context ctx) throws IOException {
-        if(!schemerDbExists()) {
-            try {
-                Log.d("CHRIS", "RUNNING INSTALL!");
-                db.execSQL("drop table if exists " + DB_TABLE_SCHEMES);
-                db.execSQL(CREATE_TABLE_SCHEMES);
-
-                // insert our seed data from the path
-                insertSeedData(path, ",", ctx);
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     // loads the seed data into the database
-    private void insertSeedData(String path, String deli, Context ctx) throws IOException {
+    private void insertSeedData(String path, String deli, Context ctx, SQLiteDatabase db) throws IOException {
         // load seed data from seed file
         ArrayList<ColorScheme> cs = ColorsUtil.FileUtil.loadSeedData(path, deli, ctx);
 
         // build our inserts
         for(ColorScheme c : cs) {
             // insert the scheme
-            insertScheme(c);
+            insertScheme(c, db);
         }
     }
 
@@ -110,7 +102,25 @@ public class DBUtil {
     private boolean schemerDbExists() {
         Cursor c = db.rawQuery(CHECK_TABLE_EXISTS, null);
 
-        return c != null;
+        return c.getCount() > 0;
+    }
+
+    // inserts one scheme into the db
+    public long insertScheme(ColorScheme cs, SQLiteDatabase db) {
+        ContentValues initvals = new ContentValues();
+
+        // put our values into the db
+        initvals.put(KEY_COLOR + 1, cs.Colors[0]);
+        initvals.put(KEY_COLOR + 2, cs.Colors[1]);
+        initvals.put(KEY_COLOR + 3, cs.Colors[2]);
+        initvals.put(KEY_COLOR + 4, cs.Colors[3]);
+        initvals.put(KEY_UNAME, cs.UserName);
+        initvals.put(KEY_LIKED, 0);
+
+        // insert the values
+        long val = db.insert(DB_TABLE_SCHEMES, null, initvals);
+
+        return val;
     }
 
     // inserts one scheme into the db

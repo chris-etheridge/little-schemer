@@ -42,11 +42,8 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
         setContentView(R.layout.activity_little_schemer_v2);
         Intent i = getIntent();
 
-        // load our db into memory
+        // create our db
         _db = new DBUtil(this);
-
-        // load up colors
-        loadColors(this);
 
         // check if the intent has extras
         if(i.getExtras() != null) {
@@ -86,6 +83,22 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
         this.startActivity(i);
     }
 
+    public void onDeleteButtonTap(View view) {
+        _db.open();
+
+        _db.deleteScheme(CURRENT_SCHEME._id);
+
+        _db.close();
+
+        // show a toast
+        Toast.makeText(this, "Scheme deleted!", Toast.LENGTH_SHORT).show();
+
+        // cycle the colors
+        LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
+
+        cycleColors(btns);
+    }
+
     // like the scheme
     public void onLikeButtonTap(View view) {
         // make the color scheme liked
@@ -123,18 +136,6 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
 
     // initializes the ui
     private void initUi(Context ctx) {
-        // check if our db exists or not
-        try {
-            _db.open();
-
-            // install our schemes
-            _db.runSchemerInstall(SEED_DATA_PATH, ctx);
-
-            _db.close();
-        } catch (IOException e) {
-
-        }
-
         LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
 
         // load the colors

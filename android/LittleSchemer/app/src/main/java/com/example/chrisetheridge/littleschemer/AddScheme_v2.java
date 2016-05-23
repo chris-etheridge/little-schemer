@@ -70,6 +70,7 @@ public class AddScheme_v2 extends AppCompatActivity {
                     b3.getText().toString(), b4.getText().toString()};
             String name = nametc.getText().toString();
 
+            // the scheme will initially not be liked
             ColorScheme newscheme = new ColorScheme(colors, name, 0);
 
             _db.open();

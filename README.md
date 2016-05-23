@@ -6,6 +6,12 @@ All default colour schemes are from [colorhunt](http://colorhunt.co).
 
 ![color scheme example](scheme.jpg)
 
+### Screenshots
+
+Below is a set of screenshots of what the main application looks like.
+
+![little scehemer screenshots](little-schemer-arts.jpg)
+
 ### What for?
 
 This is an Android application for my college assignment.

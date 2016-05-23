@@ -117,6 +117,7 @@
                 android:layout_height="wrap_content"
                 android:text="Delete"
                 android:layout_weight="1"
+                android:onClick="onDeleteButtonTap"
                 android:id="@+id/edit_color_btn"/>
 
             <Button
