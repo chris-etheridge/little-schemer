@@ -20,7 +20,9 @@ This is an Android application for my college assignment.
 
 Open the project folder: `android > LittleSchemer` in Android Studio, and hit the run button.
 
-There are essentially two applications (questions) embedded in one. Stupid college assessments.
+There are essentially two applications (questions) embedded in one.
+
+**Question 1** is file based while **question 2** uses an SQLite DB.
 
 ### Clojure?
 
