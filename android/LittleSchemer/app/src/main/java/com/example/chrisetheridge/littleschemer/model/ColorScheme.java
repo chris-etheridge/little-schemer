@@ -4,7 +4,7 @@ package com.example.chrisetheridge.littleschemer.model;
 public class ColorScheme {
 
     // constructor that takes an id (v2)
-    public ColorScheme(int id, String[] colors, String name, Boolean liked) {
+    public ColorScheme(int id, String[] colors, String name, int liked) {
         Colors = colors;
         UserName = name;
         Liked = liked;
@@ -12,7 +12,7 @@ public class ColorScheme {
     }
 
     // constructor that does not take an id (v1)
-    public ColorScheme(String[] colors, String name, Boolean liked) {
+    public ColorScheme(String[] colors, String name, int liked) {
         Colors = colors;
         UserName = name;
         Liked = liked;
@@ -25,7 +25,7 @@ public class ColorScheme {
 
     public String[] Colors;
 
-    public boolean Liked;
+    public int Liked;
 
     public int _id;
 

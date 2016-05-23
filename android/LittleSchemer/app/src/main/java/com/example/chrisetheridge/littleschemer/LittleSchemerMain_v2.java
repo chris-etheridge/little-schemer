@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -27,6 +28,9 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
 
     // all our color schemes
     private List<ColorScheme> ALL_COLOR_SCHEMES = new ArrayList<>();
+
+    // our current color scheme
+    private ColorScheme CURRENT_SCHEME;
 
     // db
     private DBUtil _db;
@@ -52,6 +56,9 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
                 ColorScheme s = ColorsUtil.FileUtil.parseLine(newscheme, ",");
                 LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
 
+                // set our current scheme
+                CURRENT_SCHEME = s;
+
                 // setup the ui
                 setUiButtons(btns, s, this);
 
@@ -62,6 +69,40 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
             // init the ui
             initUi(this);
         }
+    }
+
+    // method for when the color view is tapped
+    public void onColorChangeViewTap(View view) {
+        LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
+
+        cycleColors(btns);
+    }
+
+    // method for when the new button is tapped
+    public void onNewSchemeTap(View view) {
+        Intent i = new Intent(this, AddScheme_v2.class);
+
+        this.startActivity(i);
+    }
+
+    public void onLikeButtonTap(View view) {
+
+    }
+
+    /// PRIVATE METHODS
+
+    // method to cycle a random color scheme
+    private void cycleColors(LinearLayout btns) {
+        Log.d("CHIRS", ALL_COLOR_SCHEMES.size() + "");
+
+        // get a random color scheme
+        ColorScheme color = ALL_COLOR_SCHEMES.get(randomNumberForColors());
+
+        // set our current scheme up
+        CURRENT_SCHEME = color;
+
+        // setup the ui with the new scheme
+        setUiButtons(btns, color, this);
     }
 
     // initializes the ui
@@ -80,31 +121,11 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
 
         LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
 
+        // load the colors
+        loadColors(this);
+
         // cycle the colors
         cycleColors(btns);
-    }
-
-    // method for when the color view is tapped
-    public void onColorChangeViewTap(View view) {
-        LinearLayout btns = (LinearLayout) findViewById(R.id.color_btns);
-
-        cycleColors(btns);
-    }
-
-    // method for when the new button is tapped
-    public void onNewSchemeTap(View view) {
-        Intent i = new Intent(this, AddScheme_v2.class);
-
-        this.startActivity(i);
-    }
-
-    // method to cycle a random color scheme
-    private void cycleColors(LinearLayout btns) {
-        // get a random color scheme
-        ColorScheme color = ALL_COLOR_SCHEMES.get(randomNumberForColors());
-
-        // setup the ui with the new scheme
-        setUiButtons(btns, color, this);
     }
 
     // loads our colors from the db

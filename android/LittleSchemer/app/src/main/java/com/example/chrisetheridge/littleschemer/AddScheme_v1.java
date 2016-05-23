@@ -71,7 +71,7 @@ public class AddScheme_v1 extends Activity {
                     b3.getText().toString(), b4.getText().toString()};
             String name = nametc.getText().toString();
 
-            ColorScheme newscheme = new ColorScheme(colors, name, false);
+            ColorScheme newscheme = new ColorScheme(colors, name, 0);
 
             ColorsUtil.FileUtil.saveOneSchemeToFile(newscheme, SAVE_FILE_PATH, this);
 

@@ -135,7 +135,7 @@ public class ColorsUtil {
                 // we know the username is the 5th item
                 String name = d[4];
                 // we know the like status is the last item
-                Boolean liked = Boolean.parseBoolean(d[5]);
+                int liked = Integer.parseInt(d[5]);
 
                 s = new ColorScheme(colors, name, liked);
             }

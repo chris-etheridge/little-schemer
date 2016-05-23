@@ -24,7 +24,7 @@
       (with-open [wrt (io/writer outp :append true)]
         (doseq [c cgroup]
           (.write wrt (str c ",")))
-        (.write wrt (str "anonymous" ",false" " \n"))))))
+        (.write wrt (str "anonymous" ",0" " \n"))))))
 
 (spit-data "resources/data.txt" "resources/clean_data.txt")
 
