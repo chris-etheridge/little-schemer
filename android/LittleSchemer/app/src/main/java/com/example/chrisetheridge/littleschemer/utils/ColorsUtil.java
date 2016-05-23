@@ -146,7 +146,7 @@ public class ColorsUtil {
     }
 
     // generic utilities for color schemes
-    public static class Util {
+    public static class Common {
 
         // converts an rgb code to a hex code
         public static String rgbToHex(int r, int g, int b) {

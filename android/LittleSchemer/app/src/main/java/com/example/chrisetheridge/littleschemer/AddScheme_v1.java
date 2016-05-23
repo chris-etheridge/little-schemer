@@ -38,7 +38,7 @@ public class AddScheme_v1 extends Activity {
             public void onClick(View v) {
 
                 // parse the color
-                String color = ColorsUtil.Util.rgbToHex(COLOR_PICKER.getRed(),
+                String color = ColorsUtil.Common.rgbToHex(COLOR_PICKER.getRed(),
                         COLOR_PICKER.getGreen(), COLOR_PICKER.getBlue());
 
                 ((Button) view).setText(color);
