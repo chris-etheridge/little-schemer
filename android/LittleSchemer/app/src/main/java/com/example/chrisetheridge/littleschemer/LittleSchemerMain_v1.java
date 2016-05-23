@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -68,8 +67,6 @@ public class LittleSchemerMain_v1 extends AppCompatActivity {
         if(!checkForColorsDb()) {
             try {
                 // setup the data if it does not exist
-                Log.d("c", "DOES NOT EXIST!");
-
                 ColorsUtil.FileUtil.setupData(SEED_DATA_PATH, SAVE_FILE_PATH, ",", this);
             } catch (IOException e) {
 
@@ -130,7 +127,6 @@ public class LittleSchemerMain_v1 extends AppCompatActivity {
         // try open our file
         try {
             FileInputStream f = openFileInput("schemes.txt");
-
             exists = true;
         } catch (IOException e) {
             exists = false;

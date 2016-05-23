@@ -126,6 +126,12 @@
                 android:text="New"
                 android:onClick="onNewSchemeTap"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quit"
+                android:onClick="onQuitButtonTap"/>
+
         </LinearLayout>
 
 

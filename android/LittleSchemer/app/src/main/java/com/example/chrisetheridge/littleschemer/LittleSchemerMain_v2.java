@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,7 +16,6 @@ import com.example.chrisetheridge.littleschemer.model.ColorScheme;
 import com.example.chrisetheridge.littleschemer.utils.ColorsUtil;
 import com.example.chrisetheridge.littleschemer.utils.DBUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -81,6 +79,12 @@ public class LittleSchemerMain_v2 extends AppCompatActivity {
         Intent i = new Intent(this, AddScheme_v2.class);
 
         this.startActivity(i);
+    }
+
+    // quits the app
+    public void onQuitButtonTap(View view) {
+        this.finish();
+        System.exit(0);
     }
 
     public void onDeleteButtonTap(View view) {

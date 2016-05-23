@@ -96,7 +96,7 @@ public class ColorsUtil {
         // sets up the data
         // saves our seed colors to the phone
         public static void setupData(String inpath, String outpath, String deli, Context ctx) throws IOException {
-            ArrayList<ColorScheme> cs = loadData(inpath, deli, ctx);
+            ArrayList<ColorScheme> cs = loadSeedData(inpath, deli, ctx);
 
             // save our schemes to the file
             saveColorSchemes(cs, outpath, ctx);
